@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with your Travel Agent 🌴</title>
+    <title>Chat with your Travel Agent 🌴 - Travel Planner</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="vibrant-bg">
+    <a href="#chat-window" class="skip-link">Skip to chat content</a>
+
     <header class="chat-header">
         <h1>Travel Agent 🦜</h1>
-        <a href="reset" class="reset-btn">Reset</a>
+        <a href="reset" class="reset-btn" aria-label="Reset conversation and start over">Reset</a>
     </header>
 
     <main class="chat-container">
-        <div id="chat-window" class="chat-window">
+        <div id="chat-window" class="chat-window" role="log" aria-live="polite" aria-label="Chat messages">
             <div class="message model">
                 <p>Hello! I'm your vibrant travel agent. Where are we heading for your next award-winning adventure? 🌍</p>
             </div>
@@ -24,12 +26,12 @@
             <% }) %>
         </div>
 
-        <div id="typing-indicator" class="typing-indicator hidden">
+        <div id="typing-indicator" class="typing-indicator hidden" aria-hidden="true">
             <span></span><span></span><span></span>
         </div>
 
-        <form id="chat-form" class="chat-input-area">
-            <input type="text" id="user-input" placeholder="Type your message here..." required>
+        <form id="chat-form" class="chat-input-area" aria-label="Send message to travel agent">
+            <input type="text" id="user-input" placeholder="Type your message here..." required aria-label="Your message">
             <button type="submit">Send 🚀</button>
         </form>
     </main>

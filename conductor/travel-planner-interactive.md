@@ -1,14 +1,12 @@
 # Implementation Plan - Interactive Conversational Travel Planner
 
 ## Objective
-Transform the existing one-shot travel planner into an "award-winning" interactive conversational experience. The app will act as a personal travel agent, asking tailored questions to understand user preferences before generating a vibrant, map-integrated itinerary.
+Transform the existing one-shot travel planner into an "award-winning" interactive conversational experience. The app will act as a personal travel agent, asking tailored questions to understand user preferences before generating a vibrant itinerary.
 
 ## Tech Stack
 - **Backend**: Node.js, Express.js (ES Modules), Express-Session (for state)
 - **Frontend**: Vanilla JS, CSS (Vibrant & Playful), EJS
-- **AI**: Google Gemini 2.0 Flash (via `@google/generative-ai`)
-- **Maps**: Google Maps JavaScript API
-- **Photos**: Google Places API (via client-side or server-side)
+- **AI**: Google Gemini 2.5 Flash (via `@google/generative-ai`)
 
 ## Architecture Changes
 - **Conversation State**: Use `express-session` to store the chat history and user preferences across requests.
@@ -42,17 +40,15 @@ Transform the existing one-shot travel planner into an "award-winning" interacti
 
 ### 4. Rich Itinerary View (`/itinerary`)
 - Enhance `views/itinerary.ejs` with a "Vibrant & Playful" design.
-- Integrate Google Maps API to display pins for all activities.
-- Use Google Places API to fetch and display photos for each location.
+- Create activity cards for each day's plan.
 
 ### 5. Refactoring & Polishing
 - Improve CSS in `public/css/style.css` (gradients, cards, rounded corners).
 - Add "Reset" functionality to start over.
-- Ensure "gemini-2.0-flash" is used for speed.
+- Ensure "gemini-2.5-flash" is used for speed and quality.
 
 ## Verification & Testing
 - **Chat Flow**: Test if the AI correctly asks relevant questions based on the destination.
 - **State Persistence**: Verify that refreshing the chat page doesn't lose the conversation.
 - **JSON Parsing**: Ensure the final itinerary is correctly parsed from AI output.
-- **Map Integration**: Confirm all locations appear on the map.
 - **Visual Check**: Verify "Vibrant & Playful" style matches the objective.

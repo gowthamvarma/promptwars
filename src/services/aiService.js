@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
+import { ItinerarySchema } from "./schema.js";
 
 dotenv.config();
 
@@ -77,7 +78,8 @@ export async function generateFinalItinerary(history) {
 
   const jsonMatch = text.match(/\{[\s\S]*\}/);
   if (jsonMatch) {
-    return JSON.parse(jsonMatch[0]);
+    const rawJson = JSON.parse(jsonMatch[0]);
+    return ItinerarySchema.parse(rawJson);
   } else {
     throw new Error("Failed to extract JSON from Gemini response.");
   }

@@ -3,8 +3,8 @@
 ## Tech Stack
 - **Backend**: Node.js, Express.js (ES Modules)
 - **Frontend**: Vanilla JS, CSS, EJS
-- **AI**: Google Gemini Pro
-- **Maps**: Google Maps JavaScript API
+- **AI**: Google Gemini 2.5 Pro
+- **Model**: gemini-2.5-flash
 
 ## Structure
 - `src/server.js`: Main application file.
@@ -18,5 +18,5 @@
 - Sanitize AI outputs before rendering if needed (though EJS handles basic escaping).
 
 ## Performance
-- Use `gemini-1.5-flash` for faster response times.
+- Use `gemini-2.5-flash` for faster response times.
 - Minimize front-end assets to stay under the 10MB limit.

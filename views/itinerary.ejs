@@ -7,24 +7,26 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a href="#itinerary-content" class="skip-link">Skip to itinerary content</a>
+
     <header>
-        <div class="header-nav">
+        <nav class="header-nav" aria-label="Itinerary navigation">
             <a href="chat" class="nav-btn">Back to Chat</a>
             <a href="reset" class="nav-btn">New Trip</a>
-        </div>
+        </nav>
         <h1><%= itinerary.title %> 🌴</h1>
         <p><%= itinerary.description %></p>
     </header>
 
-    <main class="itinerary-container">
+    <main class="itinerary-container" id="itinerary-content">
         <div class="days-wrapper">
             <% itinerary.days.forEach(day => { %>
-                <section class="day-card">
-                    <h2>Day <%= day.day %> ☀️</h2>
+                <article class="day-card" aria-labelledby="day-<%= day.day %>-title">
+                    <h2 id="day-<%= day.day %>-title">Day <%= day.day %> ☀️</h2>
                     <ul class="activities-list">
                         <% day.activities.forEach(activity => { %>
                             <li>
-                                <span class="time"><%= activity.time %></span>
+                                <time class="time" datetime="<%= activity.time %>"><%= activity.time %></time>
                                 <div class="activity-details">
                                     <strong><%= activity.location %></strong>
                                     <p><%= activity.description %></p>
@@ -32,7 +34,7 @@
                             </li>
                         <% }) %>
                     </ul>
-                </section>
+                </article>
             <% }) %>
         </div>
     </main>
