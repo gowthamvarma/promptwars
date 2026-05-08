@@ -56,7 +56,7 @@ app.post("/chat", async (req, res) => {
 
     // Check if AI is ready to generate itinerary
     if (aiResponse.includes("{") && aiResponse.includes("}")) {
-      return res.json({ redirect: "/itinerary" });
+      return res.json({ redirect: "itinerary" });
     }
 
     res.json({ response: aiResponse });
@@ -68,7 +68,7 @@ app.post("/chat", async (req, res) => {
 
 app.get("/itinerary", async (req, res) => {
   if (!req.session.history) {
-    return res.redirect("/");
+    return res.redirect(".");
   }
 
   try {
@@ -82,7 +82,7 @@ app.get("/itinerary", async (req, res) => {
 
 app.get("/reset", (req, res) => {
   req.session.destroy();
-  res.redirect("/");
+  res.redirect(".");
 });
 
 // Export for Cloud Functions
