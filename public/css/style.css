@@ -56,9 +56,26 @@ header h1 {
     transition: all 0.3s;
 }
 
-.reset-btn:hover {
+.reset-btn:hover, .nav-btn:hover {
     background: var(--primary);
     color: var(--white);
+}
+
+.header-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.nav-btn {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: bold;
+    border: 2px solid var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s;
 }
 
 /* Landing Page */
@@ -260,4 +277,5 @@ header h1 {
     .hero-title { font-size: 2.5rem; }
     .chat-container { margin: 0; height: 100vh; border-radius: 0; }
     .reset-btn { position: static; transform: none; display: block; margin-top: 1rem; }
+    .header-nav { flex-direction: column; gap: 0.5rem; align-items: center; }
 }

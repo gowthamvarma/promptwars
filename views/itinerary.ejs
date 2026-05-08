@@ -17,10 +17,12 @@
 </head>
 <body>
     <header>
+        <div class="header-nav">
+            <a href="/chat" class="nav-btn">Back to Chat</a>
+            <a href="/reset" class="nav-btn">New Trip</a>
+        </div>
         <h1><%= itinerary.title %> 🌴</h1>
         <p><%= itinerary.description %></p>
-        <a href="/chat" class="reset-btn" style="left: 1.5rem; right: auto;">Back to Chat</a>
-        <a href="/reset" class="reset-btn">New Trip</a>
     </header>
 
     <main class="itinerary-container">
