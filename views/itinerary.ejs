@@ -5,15 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= itinerary.title %> - Your Award-Winning Plan 🌴</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        #map {
-            height: 400px;
-            width: 100%;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -26,9 +17,6 @@
     </header>
 
     <main class="itinerary-container">
-        <!-- Google Map Container -->
-        <div id="map"></div>
-
         <div class="days-wrapper">
             <% itinerary.days.forEach(day => { %>
                 <section class="day-card">
@@ -52,19 +40,5 @@
     <footer>
         <p>&copy; 2026 Vibrant Travel Planner Assistant</p>
     </footer>
-
-    <!-- Google Maps API -->
-    <script>
-        // Simple map placeholder for now
-        function initMap() {
-            const mapDiv = document.getElementById('map');
-            mapDiv.style.background = '#e0f7fa';
-            mapDiv.style.display = 'flex';
-            mapDiv.style.alignItems = 'center';
-            mapDiv.style.justifyContent = 'center';
-            mapDiv.innerHTML = '<p style="color: #00796b; font-weight: bold;">📍 Interactive Map Loading... (Requires Google Maps API Key)</p>';
-        }
-        window.onload = initMap;
-    </script>
 </body>
 </html>
