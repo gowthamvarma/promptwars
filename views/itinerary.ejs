@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= itinerary.title %> - Travel Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1><%= itinerary.title %></h1>
+        <p><%= itinerary.description %></p>
+        <a href="./" class="back-link">Plan another trip</a>
+    </header>
+
+    <main>
+        <div class="itinerary-container">
+            <% itinerary.days.forEach(day => { %>
+                <section class="day-card">
+                    <h2>Day <%= day.day %></h2>
+                    <ul class="activities-list">
+                        <% day.activities.forEach(activity => { %>
+                            <li>
+                                <span class="time"><%= activity.time %></span>
+                                <div class="activity-details">
+                                    <strong><%= activity.location %></strong>
+                                    <p><%= activity.description %></p>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </section>
+            <% }) %>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Travel Planner Assistant</p>
+    </footer>
+</body>
+</html>

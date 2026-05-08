@@ -1,0 +1,32 @@
+{
+  "name": "promptwars-warmup",
+  "version": "1.0.0",
+  "description": "Important Rules\r You have a maximum of 3 submission attempts.\r The repository size must be less than 10 MB\r The GitHub repository must be public\r The repository should contain only one branch\r Failure to follow these rules may result in your submission not being evaluated",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gowthamvarma/promptwars-warmup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/gowthamvarma/promptwars-warmup/issues"
+  },
+  "homepage": "https://github.com/gowthamvarma/promptwars-warmup#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  }
+}
