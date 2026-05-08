@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with your Travel Agent 🌴</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="vibrant-bg">
+    <header class="chat-header">
+        <h1>Travel Agent 🦜</h1>
+        <a href="/reset" class="reset-btn">Reset</a>
+    </header>
+
+    <main class="chat-container">
+        <div id="chat-window" class="chat-window">
+            <div class="message model">
+                <p>Hello! I'm your vibrant travel agent. Where are we heading for your next award-winning adventure? 🌍</p>
+            </div>
+            <% history.forEach(msg => { %>
+                <div class="message <%= msg.role %>">
+                    <p><%= msg.parts[0].text %></p>
+                </div>
+            <% }) %>
+        </div>
+
+        <div id="typing-indicator" class="typing-indicator hidden">
+            <span></span><span></span><span></span>
+        </div>
+
+        <form id="chat-form" class="chat-input-area">
+            <input type="text" id="user-input" placeholder="Type your message here..." required>
+            <button type="submit">Send 🚀</button>
+        </form>
+    </main>
+
+    <script src="js/chat.js"></script>
+</body>
+</html>

@@ -2,7 +2,8 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-import { generateItinerary } from "./services/aiService.js";
+import session from "express-session";
+import { sendMessage, generateFinalItinerary } from "./services/aiService.js";
 
 dotenv.config();
 
@@ -19,30 +20,69 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Ensure trailing slash for relative paths on Cloud Functions
-app.use((req, res, next) => {
-  if (req.path === "/" && !req.originalUrl.endsWith("/")) {
-    return res.redirect(301, req.originalUrl + "/");
-  }
-  next();
-});
-
+app.use(session({
+  secret: process.env.SESSION_SECRET || "travel-planner-secret",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if using https
+}));
 
 // Routes
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/generate", async (req, res) => {
-  const { destination, duration, interests, budget } = req.body;
+app.get("/chat", (req, res) => {
+  // Initialize chat history if not exists
+  if (!req.session.history) {
+    req.session.history = [];
+  }
+  res.render("chat", { history: req.session.history });
+});
+
+app.post("/chat", async (req, res) => {
+  const { message } = req.body;
   
+  if (!req.session.history) {
+    req.session.history = [];
+  }
+
   try {
-    const itinerary = await generateItinerary({ destination, duration, interests, budget });
+    const aiResponse = await sendMessage(req.session.history, message);
+    
+    // Update history
+    req.session.history.push({ role: "user", parts: [{ text: message }] });
+    req.session.history.push({ role: "model", parts: [{ text: aiResponse }] });
+
+    // Check if AI is ready to generate itinerary
+    if (aiResponse.includes("{") && aiResponse.includes("}")) {
+      return res.json({ redirect: "/itinerary" });
+    }
+
+    res.json({ response: aiResponse });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Something went wrong! 🌴" });
+  }
+});
+
+app.get("/itinerary", async (req, res) => {
+  if (!req.session.history) {
+    return res.redirect("/");
+  }
+
+  try {
+    const itinerary = await generateFinalItinerary(req.session.history);
     res.render("itinerary", { itinerary });
   } catch (error) {
     console.error(error);
-    res.status(500).render("error", { message: "Failed to generate itinerary. Please try again." });
+    res.status(500).render("error", { message: "Failed to generate your award-winning itinerary. Please try again!" });
   }
+});
+
+app.get("/reset", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
 });
 
 // Export for Cloud Functions
