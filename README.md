@@ -11,15 +11,15 @@
 - **Maintainability**: Clear separation of concerns ensures that AI logic, route handling, and UI rendering can be updated independently.
 
 ### 2. Security & Responsibility 🛡️
-- **Hardened Headers**: Implements **`helmet`** middleware to set secure HTTP headers, including a strict Content Security Policy (CSP).
-- **Secure Sessions**: Uses `express-session` with `httpOnly`, `secure` (in production), and `maxAge` flags to protect user state.
-- **Data Validation**: Leverages **`Zod`** to strictly validate AI-generated JSON before rendering, preventing malformed data or injection from impacting the UI.
-- **Secret Management**: Rigorous use of `.env` for all API keys and session secrets.
+- **Hardened Headers**: Implements **`helmet`** middleware to set secure HTTP headers and CSP.
+- **Rate Limiting**: Uses **`express-rate-limit`** to prevent API abuse and DoS attacks on chat endpoints.
+- **Environment Validation**: Includes a fail-safe startup check that validates all required `.env` variables before the server begins listening.
+- **Secure Sessions**: Uses `express-session` with `httpOnly`, `secure` (in production), and `maxAge` flags.
 
 ### 3. Efficiency & Performance ⚡
-- **Optimal Model Choice**: Powered by **`gemini-2.5-flash`**, providing the perfect balance of high intelligence, lightning-fast response times, and resource efficiency.
-- **Resource Minimalism**: Built with **Vanilla JS and CSS** to keep the total repository size well under the 10MB limit while maintaining a premium feel.
-- **State Efficiency**: Minimalistic session storage keeps memory overhead low even with multiple concurrent users.
+- **Optimal Model Choice**: Powered by **`gemini-2.5-flash`**, providing intelligence and speed.
+- **Resource Minimalism**: Built with **Vanilla JS and CSS** to keep the total repository size well under 10MB.
+- **Professional Typography**: Integrated **Google Fonts (Plus Jakarta Sans)** for a premium, readable aesthetic.
 
 ### 4. Testing & Validation ✅
 - **Automated Testing**: Includes a suite of **Jest and Supertest** integration tests to verify route health and session logic.

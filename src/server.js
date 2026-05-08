@@ -4,9 +4,12 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import session from "express-session";
 import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 import router from "./routes/index.js";
+import { validateEnv } from "./config/env.js";
 
 dotenv.config();
+validateEnv();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,10 +22,20 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "script-src": ["'self'", "'unsafe-inline'"], // Needed for EJS/Vanilla JS interactions
+      "script-src": ["'self'", "'unsafe-inline'"],
     },
   },
 }));
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: "Too many requests from this IP, please try again after 15 minutes",
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use("/chat", limiter); // Apply rate limit to chat endpoints
 
 // Middleware
 app.set("view engine", "ejs");

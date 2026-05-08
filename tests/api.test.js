@@ -5,7 +5,7 @@ describe("Travel Planner API", () => {
   it("should render the home page", async () => {
     const res = await request(app).get("/");
     expect(res.statusCode).toEqual(200);
-    expect(res.text).toContain("Vibrant Travel Planner");
+    expect(res.text).toContain("Your Next Adventure Awaits");
   });
 
   it("should render the chat page", async () => {

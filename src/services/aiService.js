@@ -65,22 +65,30 @@ export async function sendMessage(history, message) {
 export async function generateFinalItinerary(history) {
   const model = genAI.getGenerativeModel({
     model: "gemini-2.5-flash",
-    systemInstruction: SYSTEM_PROMPT + "\n\nNOW GENERATE THE FINAL ITINERARY IN JSON FORMAT."
+    systemInstruction: SYSTEM_PROMPT + "\n\nNOW GENERATE THE FINAL ITINERARY IN JSON FORMAT. Ensure it is a valid JSON object."
   });
 
   const chat = model.startChat({
     history: history,
   });
 
-  const result = await chat.sendMessage("Please generate the final itinerary JSON now.");
-  const response = await result.response;
-  const text = response.text();
+  try {
+    const result = await chat.sendMessage("Please generate the final itinerary JSON now.");
+    const response = await result.response;
+    const text = response.text();
 
-  const jsonMatch = text.match(/\{[\s\S]*\}/);
-  if (jsonMatch) {
-    const rawJson = JSON.parse(jsonMatch[0]);
-    return ItinerarySchema.parse(rawJson);
-  } else {
-    throw new Error("Failed to extract JSON from Gemini response.");
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      const rawJson = JSON.parse(jsonMatch[0]);
+      return ItinerarySchema.parse(rawJson);
+    } else {
+      throw new Error("Gemini did not return a valid JSON object. Please try refreshing!");
+    }
+  } catch (error) {
+    console.error("Itinerary Generation Error:", error);
+    if (error.name === "ZodError") {
+      throw new Error("The travel plan was generated but had some formatting issues. Please try again!");
+    }
+    throw error;
   }
 }
