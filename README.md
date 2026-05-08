@@ -6,7 +6,7 @@
 ## Approach and Logic
 - **Conversational Experience**: Instead of a static form, the app uses a multi-turn chat interface. Gemini acts as a professional travel agent, asking one tailored question at a time to deeply understand user preferences.
 - **Stateful Interaction**: Using `express-session`, the application maintains the context of the conversation, allowing for a natural and progressive discovery of the user's dream trip.
-- **AI Integration**: We leverage `gemini-1.5-flash` for high-speed, high-quality conversational responses and structured JSON generation.
+- **AI Integration**: We leverage `gemini-2.5-flash` for high-speed, high-quality conversational responses and structured JSON generation.
 - **Rich Visualization**: The final itinerary is presented in a "Vibrant & Playful" design, including an interactive map container and detailed activity cards.
 
 ## How the Solution Works

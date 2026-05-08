@@ -25,8 +25,8 @@ Keep your conversational responses enthusiastic and helpful. Use emojis!
  * @returns {Promise<string>} The AI's response.
  */
 export async function getChatResponse(history) {
-  const model = genAI.getGenerativeModel({ 
-    model: "gemini-1.5-flash",
+  const model = genAI.getGenerativeModel({
+    model: "gemini-2.5-flash",
     systemInstruction: SYSTEM_PROMPT
   });
 
@@ -43,8 +43,8 @@ export async function getChatResponse(history) {
  * Sends a message to the chat and gets the response.
  */
 export async function sendMessage(history, message) {
-  const model = genAI.getGenerativeModel({ 
-    model: "gemini-1.5-flash",
+  const model = genAI.getGenerativeModel({
+    model: "gemini-2.5-flash",
     systemInstruction: SYSTEM_PROMPT
   });
 
@@ -62,8 +62,8 @@ export async function sendMessage(history, message) {
  * (This is a helper to ensure we get JSON).
  */
 export async function generateFinalItinerary(history) {
-  const model = genAI.getGenerativeModel({ 
-    model: "gemini-1.5-flash",
+  const model = genAI.getGenerativeModel({
+    model: "gemini-2.5-flash",
     systemInstruction: SYSTEM_PROMPT + "\n\nNOW GENERATE THE FINAL ITINERARY IN JSON FORMAT."
   });
 

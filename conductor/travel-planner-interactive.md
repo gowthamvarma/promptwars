@@ -6,7 +6,7 @@ Transform the existing one-shot travel planner into an "award-winning" interacti
 ## Tech Stack
 - **Backend**: Node.js, Express.js (ES Modules), Express-Session (for state)
 - **Frontend**: Vanilla JS, CSS (Vibrant & Playful), EJS
-- **AI**: Google Gemini 1.5 Flash (via `@google/generative-ai`)
+- **AI**: Google Gemini 2.0 Flash (via `@google/generative-ai`)
 - **Maps**: Google Maps JavaScript API
 - **Photos**: Google Places API (via client-side or server-side)
 
@@ -48,7 +48,7 @@ Transform the existing one-shot travel planner into an "award-winning" interacti
 ### 5. Refactoring & Polishing
 - Improve CSS in `public/css/style.css` (gradients, cards, rounded corners).
 - Add "Reset" functionality to start over.
-- Ensure "gemini-1.5-flash" is used for speed.
+- Ensure "gemini-2.0-flash" is used for speed.
 
 ## Verification & Testing
 - **Chat Flow**: Test if the AI correctly asks relevant questions based on the destination.
